@@ -6,11 +6,11 @@
         <div class="card">
             <div class="card-header">
                 <h4>
-                {% if object %}
-                Редактировать собаку
-                {% else %}
-                Добавить собаку
-                {% endif %}
+                    {% if object %}
+                    Редактировать собаку
+                    {% else %}
+                    Добавить собаку
+                    {% endif %}
                 </h4>
             </div>
             <div class="card-body">
@@ -30,13 +30,16 @@
         <div class="card">
             <div class="card-header">
                 <h4>
-                Родословная:
+                    Родословная:
                 </h4>
             </div>
             <div class="card-body">
                 {{ formset.management_form }}
                 {% for form in formset.forms %}
                 {{ form.as_p }}
+                {% if  not forloop.last %}
+                <hr>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
