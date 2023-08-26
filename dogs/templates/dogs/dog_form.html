@@ -5,11 +5,13 @@
     <div class="col-6">
         <div class="card">
             <div class="card-header">
+                <h4>
                 {% if object %}
                 Редактировать собаку
                 {% else %}
                 Добавить собаку
                 {% endif %}
+                </h4>
             </div>
             <div class="card-body">
                 {% csrf_token %}

@@ -1,27 +1,40 @@
 {% extends 'dogs/base.html' %}
 
 {% block content %}
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    {% for object in object_list %}
-    <div class="col">
-        <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                 role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c"/>
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-            </svg>
-            <div class="card-body">
-                <p class="card-text">{{ object.name | title }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <a type="button" href="{% url 'dogs:edit_dog' object.pk %}" class="btn btn-sm btn-outline-secondary">EDIT</a>
-                        <a type="button" href="{% url 'dogs:delete_dog' object.pk %}" class="btn btn-sm btn-outline-secondary">DELETE</a>
+<div class="row">
+    <div class="col-12  mt-3">
+        <a type="button" href="{% url 'dogs:create_dog' category_pk %}" class="btn btn-outline-secondary">Добавить
+            собаку</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {% for object in object_list %}
+        <div class="col">
+            <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                     xmlns="http://www.w3.org/2000/svg"
+                     role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                     focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"/>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                </svg>
+                <div class="card-body">
+                    <h4 class="card-text">{{ object.name | title }}</h4>
+                    <p class="card-text">{{ object.birth_day }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a type="button" href="{% url 'dogs:edit_dog' object.pk %}"
+                               class="btn btn-sm btn-outline-secondary">EDIT</a>
+                            <a type="button" href="{% url 'dogs:delete_dog' object.pk %}"
+                               class="btn btn-sm btn-outline-secondary">DELETE</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

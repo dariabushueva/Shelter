@@ -2,7 +2,6 @@
 
 {% block content %}
 
-<a type="button" href="{% url 'dogs:create_dog' %}" class="btn btn-sm btn-outline-secondary">Добавить собаку</a>
 <div class="row mt-3">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for object in object_list %}

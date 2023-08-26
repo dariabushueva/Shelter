@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 
+from dogs.forms import DogForm
 from dogs.models import Category, Dog
 
 
@@ -42,14 +43,14 @@ class DogListView(ListView):
 class DogCreateView(CreateView):
 
     model = Dog
-    fields = ('name', 'category')
+    form_class = DogForm
     success_url = reverse_lazy('dogs:categories')
 
 
 class DogUpdateView(UpdateView):
 
     model = Dog
-    fields = ('name', 'category')
+    form_class = DogForm
 
     def get_success_url(self):
         return reverse('dogs:category_dogs', args=[self.object.category.pk])

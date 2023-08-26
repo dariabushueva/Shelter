@@ -9,7 +9,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('categories/', CategoryListView.as_view(), name='categories'),
     path('<int:pk>/dogs/', DogListView.as_view(), name='category_dogs'),
-    path('create/', DogCreateView.as_view(), name='create_dog'),
+    path('<int:pk>/create/', DogCreateView.as_view(), name='create_dog'),
     path('edit/<int:pk>', DogUpdateView.as_view(), name='edit_dog'),
     path('delete/<int:pk>/', DogDeleteView.as_view(), name='delete_dog')
 ]
