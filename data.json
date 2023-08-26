@@ -1,0 +1,147 @@
+[
+  {
+    "model": "dogs.category",
+    "pk": 1,
+    "fields": {
+      "name": "Колли",
+      "description": "Очень пушистая псина"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 2,
+    "fields": {
+      "name": "Боксер",
+      "description": "Собака с квадратной мордой"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 3,
+    "fields": {
+      "name": "Чихуахуа",
+      "description": "Пушистая фигня"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 4,
+    "fields": {
+      "name": "дог",
+      "description": "Высокий и мужественный"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 1,
+    "fields": {
+      "name": "Лесси",
+      "category": 1,
+      "photo": "",
+      "birth_day": "2023-08-15"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 2,
+    "fields": {
+      "name": "Чейзик",
+      "category": 2,
+      "photo": "",
+      "birth_day": "1995-04-20"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 3,
+    "fields": {
+      "name": "Пушочек",
+      "category": 3,
+      "photo": "",
+      "birth_day": null
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 5,
+    "fields": {
+      "name": "маленькая леди",
+      "category": 3,
+      "photo": "",
+      "birth_day": "2018-06-07"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 6,
+    "fields": {
+      "name": "Линда",
+      "category": 1,
+      "photo": "",
+      "birth_day": "2021-04-26"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 7,
+    "fields": {
+      "name": "Уминда",
+      "category": 1,
+      "photo": "",
+      "birth_day": null
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 9,
+    "fields": {
+      "name": "Бакс",
+      "category": 4,
+      "photo": "",
+      "birth_day": null
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 11,
+    "fields": {
+      "name": "Чуня",
+      "category": 2,
+      "photo": "",
+      "birth_day": "2021-04-20"
+    }
+  },
+  {
+    "model": "dogs.parent",
+    "pk": 1,
+    "fields": {
+      "dog": 6,
+      "name": "Линда Старшая",
+      "category": 1,
+      "photo": "",
+      "birth_day": "2010-02-03"
+    }
+  },
+  {
+    "model": "dogs.parent",
+    "pk": 2,
+    "fields": {
+      "dog": 6,
+      "name": "Линда Папа",
+      "category": 1,
+      "photo": "",
+      "birth_day": "2009-01-02"
+    }
+  },
+  {
+    "model": "dogs.parent",
+    "pk": 3,
+    "fields": {
+      "dog": 2,
+      "name": "Чарма",
+      "category": 2,
+      "photo": "",
+      "birth_day": "1990-06-12"
+    }
+  }
+]
