@@ -1,0 +1,24 @@
+{% extends 'dogs/base.html' %}
+
+{% block content %}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                Вход пользователя
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-outline-success">Вход</button>
+                </form>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
