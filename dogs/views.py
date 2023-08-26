@@ -1,8 +1,9 @@
+from django.forms import inlineformset_factory
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 
-from dogs.forms import DogForm
-from dogs.models import Category, Dog
+from dogs.forms import DogForm, ParentForm
+from dogs.models import Category, Dog, Parent
 
 
 class IndexView(TemplateView):
@@ -53,7 +54,26 @@ class DogUpdateView(UpdateView):
     form_class = DogForm
 
     def get_success_url(self):
-        return reverse('dogs:category_dogs', args=[self.object.category.pk])
+        return reverse('dogs:edit_dog', args=[self.kwargs.get('pk')])
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        ParentFormset = inlineformset_factory(Dog, Parent, form=ParentForm, extra=1)
+        if self.request.method == 'POST':
+            formset = ParentFormset(self.request.POST, instance=self.object)
+        else:
+            formset = ParentFormset(instance=self.object)
+        context_data['formset'] = formset
+        return  context_data
+
+    def form_valid(self, form):
+        context_data = self.get_context_data()
+        formset = context_data['formset']
+        self.object = form.save()
+        if formset.is_valid():
+            formset.instance = self.object
+            formset.save()
+        return super().form_valid(form)
 
 
 class DogDeleteView(DeleteView):
