@@ -22,7 +22,8 @@
                 </svg>
                 <div class="card-body">
                     <h4 class="card-text">{{ object.name | title }}</h4>
-                    <p class="card-text">{{ object.birth_day }}</p>
+                    <p class="card-text">{{ object.birth_day }}</p><br>
+                    <p class="card-text">{{ object.owner|default:"Без хозяина" }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a type="button" href="{% url 'dogs:edit_dog' object.pk %}"
