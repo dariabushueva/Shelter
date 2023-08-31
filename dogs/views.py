@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
 from django.http import Http404
 from django.urls import reverse_lazy, reverse
@@ -32,7 +32,9 @@ class DogListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(category_id=self.kwargs.get('pk'), owner=self.request.user)
+        queryset = queryset.filter(category_id=self.kwargs.get('pk'))
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(owner=self.request.user)
         return queryset
 
     def get_context_data(self, *args, **kwargs):
@@ -43,11 +45,12 @@ class DogListView(ListView):
         return context_data
 
 
-class DogCreateView(LoginRequiredMixin, CreateView):
+class DogCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     model = Dog
     form_class = DogForm
     success_url = reverse_lazy('dogs:categories')
+    permission_required = 'dogs.add_dog'
 
     def form_valid(self, form):
         self.object = form.save()
@@ -63,7 +66,7 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        if self.object.owner != self.request.user:
+        if self.object.owner != self.request.user and not self.request.user.is_staff:
             raise Http404
         return self.object
 
@@ -90,10 +93,11 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class DogDeleteView(LoginRequiredMixin, DeleteView):
+class DogDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
     model = Dog
     success_url = reverse_lazy('dogs:categories')
+    permission_required = 'dogs.delete_dog'
 
 
 

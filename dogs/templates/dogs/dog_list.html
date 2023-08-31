@@ -2,10 +2,12 @@
 
 {% block content %}
 <div class="row">
+    {% if perms.dogs.add_dog %}
     <div class="col-12  mt-3">
         <a type="button" href="{% url 'dogs:create_dog' category_pk %}" class="btn btn-outline-secondary">Добавить
             собаку</a>
     </div>
+    {% endif %}
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
@@ -28,8 +30,10 @@
                         <div class="btn-group">
                             <a type="button" href="{% url 'dogs:edit_dog' object.pk %}"
                                class="btn btn-sm btn-outline-secondary">EDIT</a>
+                            {% if perms.dogs.add_dog %}
                             <a type="button" href="{% url 'dogs:delete_dog' object.pk %}"
                                class="btn btn-sm btn-outline-secondary">DELETE</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
