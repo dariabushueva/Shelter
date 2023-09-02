@@ -1,6 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.cache import cache
-
 from django.forms import inlineformset_factory
 from django.http import Http404
 from django.urls import reverse_lazy, reverse
@@ -83,7 +81,7 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
         else:
             formset = ParentFormset(instance=self.object)
         context_data['formset'] = formset
-        return  context_data
+        return context_data
 
     def form_valid(self, form):
         context_data = self.get_context_data()
